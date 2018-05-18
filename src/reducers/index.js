@@ -1,10 +1,11 @@
-import {MAKE_GUESS} from '../actions'
+import {MAKE_GUESS, RESTART_GAME} from '../actions'
 
 
 const initialState = {
     guesses: [],
-    feedback: 'Make your guess',
-    correctAnswer: Math.round(Math.random() * 100) + 1
+    feedback: 'Make your guess!',
+    correctAnswer: Math.round(Math.random() * 100) + 1,
+    auralStatus: ''
 };
 
 export const reducer = (state=initialState, action) => {
@@ -45,6 +46,16 @@ export const reducer = (state=initialState, action) => {
         });
     }
 
+    if(action.type === RESTART_GAME) {
+        return Object.assign({}, state, {
+            guesses: [],
+            feedback: 'Make your guess!',
+            correctAnswer: action.correctAnswer,
+            auralStatus: ''
+        })
+    }
+
+    
     return state;
 }
 

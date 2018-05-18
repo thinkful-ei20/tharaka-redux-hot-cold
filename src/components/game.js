@@ -17,47 +17,13 @@ export default class Game extends React.Component {
     };
   }
 
-  restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
-  }
-
-  // makeGuess(guess) {
-  //   guess = parseInt(guess, 10);
-  //   if (isNaN(guess)) {
-  //     this.setState({ feedback: 'Please enter a valid number' });
-  //     return;
-  //   }
-
-  //   const difference = Math.abs(guess - this.state.correctAnswer);
-
-  //   let feedback;
-  //   if (difference >= 50) {
-  //     feedback = 'You\'re Ice Cold...';
-  //   } else if (difference >= 30) {
-  //     feedback = 'You\'re Cold...';
-  //   } else if (difference >= 10) {
-  //     feedback = 'You\'re Warm.';
-  //   } else if (difference >= 1) {
-  //     feedback = 'You\'re Hot!';
-  //   } else {
-  //     feedback = 'You got it!';
-  //   }
-
+  // restartGame() {
   //   this.setState({
-  //     feedback,
-  //     guesses: [...this.state.guesses, guess]
+  //     guesses: [],
+  //     feedback: 'Make your guess!',
+  //     auralStatus: '',
+  //     correctAnswer: Math.floor(Math.random() * 100) + 1
   //   });
-
-  //   // We typically wouldn't touch the DOM directly like this in React
-  //   // but this is the best way to update the title of the page,
-  //   // which is good for giving screen-reader users
-  //   // instant information about the app.
-  //   document.title = feedback ? `${feedback} | Hot or Cold` : 'Hot or Cold';
   // }
 
   generateAuralUpdate() {
