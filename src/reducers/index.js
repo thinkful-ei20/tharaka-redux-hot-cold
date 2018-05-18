@@ -1,4 +1,4 @@
-import {MAKE_GUESS, RESTART_GAME} from '../actions'
+import {MAKE_GUESS, RESTART_GAME, GENERATE_AURAL_UPDATE} from '../actions'
 
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const reducer = (state=initialState, action) => {
-    console.log(state)
+
     if(action.type === 'MAKE_GUESS') {
         let guess, feedback, difference
 
@@ -53,6 +53,28 @@ export const reducer = (state=initialState, action) => {
             correctAnswer: action.correctAnswer,
             auralStatus: ''
         })
+    }
+
+    if (action.type === GENERATE_AURAL_UPDATE) {
+        console.log(state)
+        const {guesses, feedback} = state;
+        console.log(feedback, guesses.length)
+
+        // If there's not exactly 1 guess, we want to
+        // pluralize the nouns in this aural update.
+        const pluralize = guesses.length !== 1;
+
+        let auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize
+            ? 'guesses'
+            : 'guess'}.`;
+
+        if (guesses.length > 0) {
+            auralStatus += ` ${pluralize
+                ? 'In order of most- to least-recent, they are'
+                : 'It was'}: ${guesses.reverse().join(', ')}`;
+        }
+
+        return Object.assign({}, state, {auralStatus});
     }
 
     
